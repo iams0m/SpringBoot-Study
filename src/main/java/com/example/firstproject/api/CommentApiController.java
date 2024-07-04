@@ -39,9 +39,19 @@ public class CommentApiController {
     public ResponseEntity<CommentDto> update(@PathVariable Long id, @RequestBody CommentDto dto) {
         
         // 서비스에 위임
-        CommentDto updateDto = commentService.update(id, dto);
+        CommentDto updatedDto = commentService.update(id, dto);
 
         // 결과 응답
-        return ResponseEntity.status(HttpStatus.OK).body(updateDto);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedDto);
+    }
+
+    @DeleteMapping("/api/comments/{id}")
+    public ResponseEntity<CommentDto> delete(@PathVariable Long id) {
+        
+        // 서비스에 위임
+        CommentDto deletedDto = commentService.delete(id);
+
+        // 결과 응답
+        return ResponseEntity.status(HttpStatus.OK).body(deletedDto);
     }
 }
